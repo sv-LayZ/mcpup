@@ -1,0 +1,19 @@
+{
+  "name": "mcp-check",
+  "version": "0.0.0",
+  "description": "One-shot semantic health check for MCP servers: catches silent failures and schema drift.",
+  "type": "module",
+  "bin": {
+    "mcp-check": "./src/bin.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "bun build ./src/bin.ts --target=node --outfile=dist/bin.js"
+  },
+  "dependencies": {
+    "@mcpup/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2"
+  }
+}
