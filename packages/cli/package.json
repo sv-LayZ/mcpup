@@ -1,19 +1,52 @@
 {
-  "name": "mcp-check",
-  "version": "0.0.0",
+  "name": "@mcpup/cli",
+  "version": "0.1.0",
   "description": "One-shot semantic health check for MCP servers: catches silent failures and schema drift.",
   "type": "module",
+  "license": "MIT",
+  "author": "Mattis \"LayZ\"",
+  "homepage": "https://github.com/sv-LayZ/mcp-check#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sv-LayZ/mcp-check.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/sv-LayZ/mcp-check/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "monitoring",
+    "health-check",
+    "schema-drift",
+    "observability",
+    "cli",
+    "uptime",
+    "ai-agents"
+  ],
   "bin": {
-    "mcp-check": "./src/bin.ts"
+    "mcp-check": "./dist/bin.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "bun build ./src/bin.ts --target=node --outfile=dist/bin.js"
-  },
-  "dependencies": {
-    "@mcpup/core": "workspace:*"
+    "build": "bun build ./src/bin.ts --target=node --outfile=dist/bin.js && chmod +x dist/bin.js",
+    "prepublishOnly": "bun run build"
   },
   "devDependencies": {
+    "@mcpup/core": "workspace:*",
     "typescript": "5.9.2"
   }
 }

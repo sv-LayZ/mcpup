@@ -9,6 +9,7 @@
   "scripts": {
     "test": "bun test",
     "typecheck": "bun run --filter '*' typecheck",
+    "build": "bun run --filter '@mcpup/cli' build",
     "check": "bun run packages/cli/src/bin.ts"
   },
   "engines": {

@@ -28,11 +28,18 @@ The handshake succeeds — a Pingdom would see "green". The agent, however, brea
 
 ## Installation
 
+Published as [`@mcpup/cli`](https://www.npmjs.com/package/@mcpup/cli); the installed command is `mcp-check`.
+
 ```bash
-# via bun
-bun add -g mcp-check
-# or run without installing
-bunx mcp-check <url>
+# run without installing (Node ≥ 20)
+npx @mcpup/cli <url>
+
+# or install globally → provides the `mcp-check` command
+npm i -g @mcpup/cli
+mcp-check <url>
+
+# Bun users
+bunx @mcpup/cli <url>
 ```
 
 ## Usage
