@@ -9,7 +9,7 @@ See [mcpup-brief.md](mcpup-brief.md) for the full product context.
 | Package | Role |
 |---|---|
 | [`@mcpup/core`](packages/core) | Probe engine: `initialize` handshake, `tools/list`, strict parsing, schema snapshot & drift. Reusable by the CLI and the future SaaS. |
-| [`mcp-check`](packages/cli) | Open-source CLI: one-shot semantic health check. Top-of-funnel of the product. |
+| [`@mcpup/cli`](packages/cli) | Open-source CLI: one-shot semantic health check. Top-of-funnel of the product. |
 
 ## Development
 
