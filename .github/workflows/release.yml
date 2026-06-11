@@ -53,10 +53,8 @@ jobs:
           if npm view "@mcpup/core@$VER" version >/dev/null 2>&1; then
             echo "@mcpup/core@$VER already published — skipping"
           else
-            npm publish
+            npm publish --provenance
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @mcpup/cli
         working-directory: packages/cli
