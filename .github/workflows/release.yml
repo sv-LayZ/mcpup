@@ -36,9 +36,9 @@ jobs:
             exit 1
           fi
 
-      - run: bun test
-
       - run: bun run build
+
+      - run: bun test
 
       # Publish @mcpup/core first — the CLI bundles it, but it is also a public
       # package. Skip if this version is already on npm (core changes less often
