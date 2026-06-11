@@ -26,7 +26,7 @@
     "ai-agents"
   ],
   "bin": {
-    "mcp-check": "./dist/bin.js"
+    "mcp-check": "dist/bin.js"
   },
   "files": [
     "dist",
