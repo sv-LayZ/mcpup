@@ -5,12 +5,15 @@ on:
     tags:
       - "v*"
 
+# OIDC trusted publishing: no NPM_TOKEN, no OTP. npm proves the publish came
+# from this exact workflow via the id-token below — configure the trusted
+# publisher once on npmjs.com (see README / repo notes).
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # required for npm provenance
+      id-token: write # required for OIDC trusted publishing + provenance
     steps:
       - uses: actions/checkout@v4
 
@@ -18,12 +21,12 @@ jobs:
         with:
           bun-version: 1.3.3
 
-      # npm (from setup-node) performs the publish — provenance support is more
-      # reliable than `bun publish`. Bun still builds the bundle.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: "https://registry.npmjs.org"
+          node-version: 22
+
+      # Trusted publishing + provenance need npm >= 11.5.1.
+      - run: npm install -g npm@latest
 
       - run: bun install --frozen-lockfile
 
@@ -42,6 +45,4 @@ jobs:
 
       - name: Publish @mcpup/cli
         working-directory: packages/cli
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance

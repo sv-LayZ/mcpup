@@ -25,6 +25,8 @@ cd packages/core && bun run typecheck
 cd packages/cli  && bun run typecheck
 ```
 
+Publishing the CLI: see [RELEASING.md](RELEASING.md).
+
 ## Status
 
 Building block 1 of the brief (§10): the **probe client** that de-risks everything else, shipped as the `mcp-check` CLI.
