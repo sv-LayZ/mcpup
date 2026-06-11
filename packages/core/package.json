@@ -1,6 +1,6 @@
 {
   "name": "@mcpup/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Semantic probe engine for MCP servers: handshake, strict validation, schema snapshot & drift.",
   "type": "module",
   "license": "MIT",
