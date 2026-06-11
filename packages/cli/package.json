@@ -1,18 +1,18 @@
 {
   "name": "@mcpup/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One-shot semantic health check for MCP servers: catches silent failures and schema drift.",
   "type": "module",
   "license": "MIT",
   "author": "Mattis \"LayZ\"",
-  "homepage": "https://github.com/sv-LayZ/mcp-check#readme",
+  "homepage": "https://github.com/sv-LayZ/mcpup#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sv-LayZ/mcp-check.git",
+    "url": "git+https://github.com/sv-LayZ/mcpup.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/sv-LayZ/mcp-check/issues"
+    "url": "https://github.com/sv-LayZ/mcpup/issues"
   },
   "keywords": [
     "mcp",
