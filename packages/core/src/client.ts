@@ -2,7 +2,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import type { AuthConfig } from "./types.ts";
 
-const DEFAULT_CLIENT_INFO = { name: "mcp-check", version: "0.0.0" } as const;
+const DEFAULT_CLIENT_INFO = { name: "mcpup", version: "0.0.0" } as const;
 
 export interface ProbeClient {
   client: Client;

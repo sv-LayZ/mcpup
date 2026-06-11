@@ -1,6 +1,6 @@
 {
   "name": "@mcpup/cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "One-shot semantic health check for MCP servers: catches silent failures and schema drift.",
   "type": "module",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "ai-agents"
   ],
   "bin": {
-    "mcp-check": "dist/bin.js"
+    "mcpup": "dist/bin.js"
   },
   "files": [
     "dist",

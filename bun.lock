@@ -10,9 +10,9 @@
     },
     "packages/cli": {
       "name": "@mcpup/cli",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "bin": {
-        "mcp-check": "./dist/bin.js",
+        "mcpup": "dist/bin.js",
       },
       "devDependencies": {
         "@mcpup/core": "workspace:*",
@@ -21,7 +21,7 @@
     },
     "packages/core": {
       "name": "@mcpup/core",
-      "version": "0.0.0",
+      "version": "0.1.2",
       "dependencies": {
         "@modelcontextprotocol/sdk": "1.29.0",
       },

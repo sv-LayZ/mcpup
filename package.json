@@ -2,7 +2,7 @@
   "name": "mcpup",
   "private": true,
   "version": "0.0.0",
-  "description": "Semantic health monitoring for MCP servers — the probe engine and the mcp-check CLI.",
+  "description": "Semantic health monitoring for MCP servers — the probe engine and the mcpup CLI.",
   "workspaces": [
     "packages/*"
   ],

@@ -29,13 +29,13 @@ Publishing the CLI: see [RELEASING.md](RELEASING.md).
 
 ## Status
 
-Building block 1 of the brief (§10): the **probe client** that de-risks everything else, shipped as the `mcp-check` CLI.
+Building block 1 of the brief (§10): the **probe client** that de-risks everything else, shipped as the `mcpup` CLI.
 
 - ✅ `initialize` handshake + `tools/list` over Streamable HTTP transport (official `@modelcontextprotocol/sdk`).
 - ✅ **Silent failure** detection (`200 OK` hiding a JSON-RPC error / unreadable payload).
 - ✅ Schema snapshot + **drift detection** (structural diff vs baseline).
 - ✅ **Safe tool call** (`--call`): args synthesized from the schema, validation of the shape of the response (isError, `outputSchema` mismatch via Ajv).
-- ✅ `mcp-check` CLI with CI exit codes (0/1/2/3/4) and `--json` output.
+- ✅ `mcpup` CLI with CI exit codes (0/1/2/3/4) and `--json` output.
 - ✅ Validated by tests against a hand-rolled fixture **and** a real MCP server from the SDK.
 
 ### Next building blocks (out of current scope)

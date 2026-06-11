@@ -70,7 +70,7 @@ export function renderHuman(
   const paint = makePaint(opts.color);
   const lines: string[] = [];
 
-  lines.push(`${paint("mcp-check", "bold", "cyan")}  ${paint(result.endpoint, "dim")}`);
+  lines.push(`${paint("mcpup", "bold", "cyan")}  ${paint(result.endpoint, "dim")}`);
 
   const dot = paint("●", statusColor(result.status));
   const label = paint(STATUS_LABEL[result.status], statusColor(result.status), "bold");

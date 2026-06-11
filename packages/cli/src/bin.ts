@@ -39,10 +39,10 @@ interface ParsedArgs {
   error?: string;
 }
 
-const HELP = `mcp-check — one-shot semantic health-check for MCP servers
+const HELP = `mcpup — one-shot semantic health-check for MCP servers
 
 USAGE
-  mcp-check <url> [options]
+  mcpup <url> [options]
 
 OPTIONS
   -t, --token <token>     Bearer token (→ Authorization: Bearer <token>)
@@ -62,11 +62,11 @@ EXIT CODES
                              4  "safe" tool call failed (with --call)
 
 EXAMPLES
-  mcp-check https://mcp.example.com/mcp
-  mcp-check https://mcp.example.com/mcp -t $TOKEN --save-snapshot base.json
-  mcp-check https://mcp.example.com/mcp --baseline base.json --json
-  mcp-check https://mcp.example.com/mcp --call ping
-  mcp-check https://mcp.example.com/mcp --call search --call-args '{"q":"test"}'
+  mcpup https://mcp.example.com/mcp
+  mcpup https://mcp.example.com/mcp -t $TOKEN --save-snapshot base.json
+  mcpup https://mcp.example.com/mcp --baseline base.json --json
+  mcpup https://mcp.example.com/mcp --call ping
+  mcpup https://mcp.example.com/mcp --call search --call-args '{"q":"test"}'
 `;
 
 function parseArgs(argv: string[]): ParsedArgs {
@@ -152,7 +152,7 @@ async function main(): Promise<number> {
     return EXIT.ok;
   }
   if (args.version) {
-    process.stdout.write(`mcp-check ${VERSION}\n`);
+    process.stdout.write(`mcpup ${VERSION}\n`);
     return EXIT.ok;
   }
   if (args.error) {
@@ -195,7 +195,7 @@ async function main(): Promise<number> {
   const result: ProbeResult = await runProbe(args.url, {
     auth,
     timeoutMs: args.timeoutMs,
-    clientInfo: { name: "mcp-check", version: VERSION },
+    clientInfo: { name: "mcpup", version: VERSION },
     callTool,
   });
 

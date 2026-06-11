@@ -2,7 +2,7 @@ import { isBlockingToolCall, type DriftReport, type ProbeResult } from "@mcpup/c
 
 /**
  * Exit codes, designed for use in CI by early adopters:
- * an `mcp-check` in a pipeline must be able to fail the build on a drift.
+ * a `mcpup` in a pipeline must be able to fail the build on a drift.
  */
 export const EXIT = {
   /** healthy or degraded: reachable and usable. */

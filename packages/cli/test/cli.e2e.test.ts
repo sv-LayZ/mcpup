@@ -18,7 +18,7 @@ async function run(args: string[]): Promise<{ code: number; stdout: string; stde
   return { code, stdout, stderr };
 }
 
-describe("CLI mcp-check (end-to-end, real exit codes)", () => {
+describe("CLI mcpup (end-to-end, real exit codes)", () => {
   let fx: Fixture;
   beforeAll(async () => {
     fx = await startFixture("healthy");

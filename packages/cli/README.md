@@ -1,12 +1,12 @@
-# mcp-check
+# mcpup
 
 > One-shot **semantic** health check for MCP servers. Catches what an uptime monitor misses: silent failures and schema drift.
 
-An HTTP `ping` tells you the port responds. `mcp-check` tells you whether your MCP server is actually **healthy for an agent**: full handshake, usable `tools/list`, and — the classic trap — no JSON-RPC error hidden under a `200 OK`.
+An HTTP `ping` tells you the port responds. `mcpup` tells you whether your MCP server is actually **healthy for an agent**: full handshake, usable `tools/list`, and — the classic trap — no JSON-RPC error hidden under a `200 OK`.
 
 ```
-$ mcp-check https://mcp.example.com/mcp
-mcp-check  https://mcp.example.com/mcp
+$ mcpup https://mcp.example.com/mcp
+mcpup  https://mcp.example.com/mcp
   ● SILENT FAILURE   20ms
   server acme-mcp v1.2.0  ·  protocol 2025-11-25
   error [jsonrpc-error] MCP error -32603: internal explosion masked by a 200 OK
@@ -17,7 +17,7 @@ mcp-check  https://mcp.example.com/mcp
     ✗ payload-parse 200 OK but broken payload (jsonrpc-error)
 ```
 
-The handshake succeeds — a Pingdom would see "green". The agent, however, breaks. `mcp-check` says so, and exits with code 2.
+The handshake succeeds — a Pingdom would see "green". The agent, however, breaks. `mcpup` says so, and exits with code 2.
 
 ## What it checks
 
@@ -28,15 +28,15 @@ The handshake succeeds — a Pingdom would see "green". The agent, however, brea
 
 ## Installation
 
-Published as [`@mcpup/cli`](https://www.npmjs.com/package/@mcpup/cli); the installed command is `mcp-check`.
+Published as [`@mcpup/cli`](https://www.npmjs.com/package/@mcpup/cli); the installed command is `mcpup`.
 
 ```bash
 # run without installing (Node ≥ 20)
 npx @mcpup/cli <url>
 
-# or install globally → provides the `mcp-check` command
+# or install globally → provides the `mcpup` command
 npm i -g @mcpup/cli
-mcp-check <url>
+mcpup <url>
 
 # Bun users
 bunx @mcpup/cli <url>
@@ -45,7 +45,7 @@ bunx @mcpup/cli <url>
 ## Usage
 
 ```
-mcp-check <url> [options]
+mcpup <url> [options]
 
   -t, --token <token>     Bearer token (→ Authorization: Bearer <token>)
   -H, --header <k:v>      Additional HTTP header (repeatable)
@@ -62,18 +62,18 @@ mcp-check <url> [options]
 
 ```bash
 # Simple health check
-mcp-check https://mcp.example.com/mcp
+mcpup https://mcp.example.com/mcp
 
 # With auth
-mcp-check https://mcp.example.com/mcp -t "$MCP_TOKEN" -H "X-Tenant: acme"
+mcpup https://mcp.example.com/mcp -t "$MCP_TOKEN" -H "X-Tenant: acme"
 
 # Capture a schema baseline, then detect drift later
-mcp-check https://mcp.example.com/mcp --save-snapshot mcp.baseline.json
-mcp-check https://mcp.example.com/mcp --baseline mcp.baseline.json
+mcpup https://mcp.example.com/mcp --save-snapshot mcp.baseline.json
+mcpup https://mcp.example.com/mcp --baseline mcp.baseline.json
 
 # Call a safe tool and validate the shape of its response
-mcp-check https://mcp.example.com/mcp --call ping
-mcp-check https://mcp.example.com/mcp --call search --call-args '{"q":"test"}'
+mcpup https://mcp.example.com/mcp --call ping
+mcpup https://mcp.example.com/mcp --call search --call-args '{"q":"test"}'
 ```
 
 > ⚠️ `--call` actually executes the tool. Only point it at a side-effect-free tool (read-only) — you are the one asserting it is "safe". With **synthetic** arguments, an input validation rejection (`InvalidParams`) is considered *inconclusive* (exit 0); with `--call-args`, it fails the run.
@@ -91,8 +91,8 @@ mcp-check https://mcp.example.com/mcp --call search --call-args '{"q":"test"}'
 
 Precedence: `1 > 2 > 4 > 3 > 0`.
 
-Put `mcp-check --baseline mcp.baseline.json` in your pipeline: the build fails (`exit 3`) as soon as a tool changes its schema without warning.
+Put `mcpup --baseline mcp.baseline.json` in your pipeline: the build fails (`exit 3`) as soon as a tool changes its schema without warning.
 
 ---
 
-`mcp-check` is the open-source probe of **mcpup** — continuous monitoring (scheduling, history, alerting, status page) for MCP servers.
+The `mcpup` CLI is the open-source probe of the **mcpup** platform — continuous monitoring (scheduling, history, alerting, status page) for MCP servers.

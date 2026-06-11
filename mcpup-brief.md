@@ -115,7 +115,7 @@ Le drift history et la status page publique sont les déclencheurs naturels de p
 
 Distribution = ton terrain (GitHub / HN / communautés dev). Stratégie en deux temps :
 
-1. **Open-source un probe CLI** (pattern Deezify-CLI) : `mcp-check <url>` qui fait un health-check sémantique one-shot en local. Gratuit, crée la crédibilité technique et l'adoption ; le SaaS hébergé monétise le *continu* (scheduling, historique, alerting, dashboard).
+1. **Open-source un probe CLI** (pattern Deezify-CLI) : `mcpup <url>` qui fait un health-check sémantique one-shot en local. Gratuit, crée la crédibilité technique et l'adoption ; le SaaS hébergé monétise le *continu* (scheduling, historique, alerting, dashboard).
 2. **Post de lancement à angle fort :** « 52 % des serveurs MCP en prod sont morts — voici comment le savoir avant vos agents ». À publier sur HN, r/mcp, le Discord MCP/Anthropic, dev.to.
 
 Canaux : Hacker News, communautés MCP, dev.to, GitHub (le repo du CLI comme top of funnel).
@@ -127,7 +127,7 @@ Canaux : Hacker News, communautés MCP, dev.to, GitHub (le repo du CLI comme top
 Avant d'écrire le SaaS complet, prouver que la douleur est payante.
 
 - **Semaine 1 :** 10–20 entretiens avec des gens qui self-hébergent un MCP (les trouver via repos GitHub « mcp-server », Discord MCP). Question clé : *as-tu déjà été surpris par un MCP « vert » mais cassé ?*
-- **Semaine 1–2 :** sortir le **CLI open-source** `mcp-check`. Mesurer les stars / installs comme signal d'intérêt.
+- **Semaine 1–2 :** sortir le **CLI open-source** `mcpup`. Mesurer les stars / installs comme signal d'intérêt.
 - **Semaine 2 :** landing page + waitlist, avec l'angle « échec silencieux + drift ».
 - **Semaine 3–4 :** convertir les intéressés en pré-inscrits payants (ou LOI). Critère de go : un nombre cible de signups + ≥ 10 entretiens confirmant explicitement la douleur des échecs silencieux.
 
@@ -149,6 +149,6 @@ Avant d'écrire le SaaS complet, prouver que la douleur est payante.
 ## 10. Prochaines étapes
 
 1. Prototyper le **client MCP de probe** (handshake + `tools/list` + parsing strict) — le bloc qui dérisque tout.
-2. En extraire le **CLI `mcp-check`** open-source.
+2. En extraire le **CLI `mcpup`** open-source.
 3. Lancer le CLI + landing page, démarrer les 10–20 entretiens.
 4. Décider go/no-go sur les critères de la section 8.
