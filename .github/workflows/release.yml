@@ -39,9 +39,24 @@ jobs:
             exit 1
           fi
 
+      - run: bun run build
+
       - run: bun test
 
-      - run: bun run build
+      # Publish @mcpup/core first — the CLI bundles it, but it is also a public
+      # package. Skip if this version is already on npm (core changes less often
+      # than the CLI, so most tags republish the CLI only).
+      - name: Publish @mcpup/core
+        working-directory: packages/core
+        run: |
+          VER="$(node -p "require('./package.json').version")"
+          if npm view "@mcpup/core@$VER" version >/dev/null 2>&1; then
+            echo "@mcpup/core@$VER already published — skipping"
+          else
+            npm publish
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @mcpup/cli
         working-directory: packages/cli

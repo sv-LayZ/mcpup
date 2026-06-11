@@ -1,6 +1,6 @@
 {
   "name": "@mcpup/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One-shot semantic health check for MCP servers: catches silent failures and schema drift.",
   "type": "module",
   "license": "MIT",
