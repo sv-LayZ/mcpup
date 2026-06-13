@@ -13,7 +13,12 @@ import type { AddressInfo } from "node:net";
  * exactly the failures the probe must catch — including those a generic
  * uptime monitor would see as "green".
  */
-export type FixtureMode = "healthy" | "silent-failure" | "malformed" | "drift";
+export type FixtureMode =
+  | "healthy"
+  | "silent-failure"
+  | "malformed"
+  | "drift"
+  | "nonstandard-format";
 
 /** Behavior of `tools/call` (independent of the `tools/list` mode). */
 export type CallMode = "success" | "is-error" | "jsonrpc-error" | "invalid-params" | "bad-output";
@@ -64,6 +69,22 @@ const DRIFT_TOOLS = [
       required: ["a", "b"],
     },
     outputSchema: ADD_OUTPUT_SCHEMA,
+  },
+];
+
+// A tool whose outputSchema uses a non-standard (OpenAPI/protobuf) integer
+// format. `ajv-formats` doesn't know "uint64", so the SDK's default validator
+// logs `unknown format … ignored in schema` while compiling it at tools/list.
+const NONSTANDARD_FORMAT_TOOLS = [
+  {
+    name: "reserve",
+    description: "Create a reservation.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    outputSchema: {
+      type: "object",
+      properties: { id: { type: "integer", format: "uint64" } },
+      required: ["id"],
+    },
   },
 ];
 
@@ -151,7 +172,12 @@ export async function startFixture(initialMode: FixtureMode = "healthy"): Promis
           res.writeHead(200, { "content-type": "application/json" });
           return void res.end(`{"jsonrpc":"2.0","id":${JSON.stringify(id)},"result":{"tools":[`);
         }
-        const tools = mode === "drift" ? DRIFT_TOOLS : HEALTHY_TOOLS;
+        const tools =
+          mode === "drift"
+            ? DRIFT_TOOLS
+            : mode === "nonstandard-format"
+              ? NONSTANDARD_FORMAT_TOOLS
+              : HEALTHY_TOOLS;
         return void json({ jsonrpc: "2.0", id, result: { tools } });
       }
 
